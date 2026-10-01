@@ -6,20 +6,18 @@
 
 %x COMMENT
 
-ID          [a-zA-Z_][a-zA-Z0-9_]*
+ID          [a-zA-Z_]
 INT         [0-9]+
 FLOAT       ({INT}\.[0-9]*([eE][+-]?{INT})?|{INT}[eE][+-]?{INT})
 WS          [ \t\r\n]+
 
 %%
 
-"/*"                    { BEGIN(COMMENT); }
-<COMMENT>"*/"           { BEGIN(INITIAL); }
+"@"                     { BEGIN(COMMENT); }
+<COMMENT>"@"            { BEGIN(INITIAL); }
 <COMMENT>\n             { /* yylineno se actualiza automáticamente */ }
 <COMMENT>.              { /* descartar contenido de comentario */ }
 <COMMENT><<EOF>>        { return TOK_ERROR; }
-
-"//"[^\n]*              { /* comentario de línea */ }
 
 {WS}                    { /* ignorar espacios */ }
 
@@ -36,21 +34,11 @@ WS          [ \t\r\n]+
 "b"                     { return TOK_KW_BREAK; }
 "c"                     { return TOK_KW_CONTINUE; }
 
-"++"                    { return TOK_INC; }
-"--"                    { return TOK_DEC; }
-"+="                    { return TOK_PLUS_ASSIGN; }
-"-="                    { return TOK_MINUS_ASSIGN; }
-"*="                    { return TOK_MUL_ASSIGN; }
-"/="                    { return TOK_DIV_ASSIGN; }
-"%="                    { return TOK_MOD_ASSIGN; }
-"=="                    { return TOK_EQ; }
-"!="                    { return TOK_NEQ; }
-"<="                    { return TOK_LE; }
-">="                    { return TOK_GE; }
-"&"                    { return TOK_AND; }
-"|"                    { return TOK_OR; }
+"&"                     { return TOK_AND; }
+"|"                     { return TOK_OR; }
 
-"="                     { return TOK_ASSIGN; }
+":"                     { return TOK_ASSIGN; }
+"="                     { return TOK_EQ; }
 "<"                     { return TOK_LT; }
 ">"                     { return TOK_GT; }
 "!"                     { return TOK_NOT; }
@@ -71,9 +59,9 @@ WS          [ \t\r\n]+
 
 {FLOAT}                 { return TOK_FLOAT_LITERAL; }
 {INT}                   { return TOK_INT_LITERAL; }
-\'([^\\\n]|\\.)\'    { return TOK_CHAR_LITERAL; }
-\"([^\\\n]|\\.)*\"  { return TOK_STRING_LITERAL; }
-{ID}                    { return TOK_IDENTIFIER; }
+\'([^\\\n]|\\.)\'      { return TOK_CHAR_LITERAL; }
+\"([^\\\n]|\\.)*\"     { return TOK_STRING_LITERAL; }
+"#"{ID}                 { return TOK_IDENTIFIER; }
 
 <<EOF>>                 { return TOK_EOF; }
 

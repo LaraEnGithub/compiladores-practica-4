@@ -41,21 +41,10 @@ const char *scanner_token_name(int token)
 		case TOK_STRING_LITERAL: return "STRING_LITERAL";
 		case TOK_CHAR_LITERAL: return "CHAR_LITERAL";
 
-		case TOK_INC: return "INC";
-		case TOK_DEC: return "DEC";
-		case TOK_PLUS_ASSIGN: return "PLUS_ASSIGN";
-		case TOK_MINUS_ASSIGN: return "MINUS_ASSIGN";
-		case TOK_MUL_ASSIGN: return "MUL_ASSIGN";
-		case TOK_DIV_ASSIGN: return "DIV_ASSIGN";
-		case TOK_MOD_ASSIGN: return "MOD_ASSIGN";
 		case TOK_ASSIGN: return "ASSIGN";
-
 		case TOK_EQ: return "EQ";
-		case TOK_NEQ: return "NEQ";
 		case TOK_LT: return "LT";
-		case TOK_LE: return "LE";
 		case TOK_GT: return "GT";
-		case TOK_GE: return "GE";
 
 		case TOK_AND: return "AND";
 		case TOK_OR: return "OR";
