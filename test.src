@@ -1,0 +1,72 @@
+@ seccion 1 tipos y declaraciones @
+I #x : 42 ;
+F #y : 3.14 ;
+D #z : 1.0e-5 ;
+C #c : 'a' ;
+V #v ;
+K I #k : 100 ;
+
+@ seccion 2 literales numericos @
+I #entero : 255 ;
+F #flotante : 2.5 ;
+F #sinParteDecimal : 10. ;
+F #cientifica : 6.022e+23 ;
+F #expSimple : 1e10 ;
+
+@ seccion 3 caracteres y cadenas con escapes @
+C #salto : '\n' ;
+C #backslash : '\\' ;
+#saludo : "hola mundo" ;
+#escapes : "linea\ttab y comilla \" fin" ;
+#vacio : "" ;
+
+@ seccion 4 estructuras de control @
+i ( #x = 42 ) { p ( "igual" ) ; } e { p ( "distinto" ) ; }
+w ( #x < 100 ) { #x : #x + 1 ; }
+f ( #i : 0 ; #i < 10 ; #i : #i + 1 ) { r ; }
+h ( #elemento ) { b ; }
+f ( ; ; ) { c ; }
+
+@ seccion 5 definicion de funcion @
+d #duplica ( I #arg ) { r #arg * 2 ; }
+
+@ seccion 6 funcion nativa print @
+p ( "resultado:" ) ;
+
+@ seccion 7 operadores aritmeticos @
+#resultado : 7 + 3 - 2 * 4 / 2 % 3 ;
+
+@ seccion 8 operadores de bits y desplazamientos @
+#bits : 1 << 4 ;
+#bits : 256 >> 2 ;
+#bits : #entero & 15 ;
+#bits : #entero | 1 ;
+#bits : #entero ^ 255 ;
+#bits : ~ #entero ;
+
+@ seccion 9 operadores logicos y relacionales @
+i ( #x < 10 & #y > 1 ) { p ( "and" ) ; }
+i ( #x = 0 | ! #v ) { p ( "or-not" ) ; }
+#log : #x && #y ;
+#log : #x || #y ;
+
+@ seccion 10 longest match menor menormenor mayor mayormayor @
+#cmp : #x < #y ;
+#cmp : #x << #y ;
+#cmp : #x > #y ;
+#cmp : #x >> #y ;
+
+@ seccion 11 delimitadores y agrupadores @
+I #arreglo [ 10 ] ;
+#duplica ( 1 , 2 , 3 ) ;
+{ { } }
+
+@ seccion 12 errores lexicos caracteres fuera del alfabeto @
+#err : 3 $ 4 ;
+#err : 5 ? 6 ;
+#err : #x . #y ;
+#err : 7 \ 8 ;
+#err : #x ` #y ;
+
+@ seccion 13 error caracter fuera de ASCII @
+#err : "acentos validos dentro del string: aeiou" ;
