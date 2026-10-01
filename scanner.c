@@ -35,6 +35,11 @@ const char *scanner_token_name(int token)
 		case TOK_KW_BREAK: return "KW_BREAK";
 		case TOK_KW_CONTINUE: return "KW_CONTINUE";
 
+		case TOK_KW_FOREACH: return "KW_FOREACH";
+		case TOK_KW_CONST: return "KW_CONST";
+		case TOK_KW_DEF: return "KW_DEF";
+		case TOK_KW_PRINT: return "KW_PRINT";
+
 		case TOK_IDENTIFIER: return "IDENTIFIER";
 		case TOK_INT_LITERAL: return "INT_LITERAL";
 		case TOK_FLOAT_LITERAL: return "FLOAT_LITERAL";
@@ -55,6 +60,13 @@ const char *scanner_token_name(int token)
 		case TOK_MUL: return "MUL";
 		case TOK_DIV: return "DIV";
 		case TOK_MOD: return "MOD";
+
+		case TOK_SHL: return "SHL";
+		case TOK_SHR: return "SHR";
+		case TOK_BIT_AND: return "BIT_AND";
+		case TOK_BIT_OR: return "BIT_OR";
+		case TOK_BIT_XOR: return "BIT_XOR";
+		case TOK_BIT_NOT: return "BIT_NOT";
 
 		case TOK_LPAREN: return "LPAREN";
 		case TOK_RPAREN: return "RPAREN";

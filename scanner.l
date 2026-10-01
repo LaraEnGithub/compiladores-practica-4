@@ -17,7 +17,6 @@ WS          [ \t\r\n]+
 <COMMENT>"@"            { BEGIN(INITIAL); }
 <COMMENT>\n             { /* yylineno se actualiza automáticamente */ }
 <COMMENT>.              { /* descartar contenido de comentario */ }
-<COMMENT><<EOF>>        { return TOK_ERROR; }
 
 {WS}                    { /* ignorar espacios */ }
 
@@ -34,8 +33,19 @@ WS          [ \t\r\n]+
 "b"                     { return TOK_KW_BREAK; }
 "c"                     { return TOK_KW_CONTINUE; }
 
-"&"                     { return TOK_AND; }
-"|"                     { return TOK_OR; }
+"h"                     { return TOK_KW_FOREACH; }
+"K"                     { return TOK_KW_CONST; }
+"d"                     { return TOK_KW_DEF; }
+"p"                     { return TOK_KW_PRINT; }
+
+"&&"                    { return TOK_AND; }
+"||"                    { return TOK_OR; }
+"<<"                    { return TOK_SHL; }
+">>"                    { return TOK_SHR; }
+"&"                     { return TOK_BIT_AND; }
+"|"                     { return TOK_BIT_OR; }
+"^"                     { return TOK_BIT_XOR; }
+"~"                     { return TOK_BIT_NOT; }
 
 ":"                     { return TOK_ASSIGN; }
 "="                     { return TOK_EQ; }
@@ -59,8 +69,8 @@ WS          [ \t\r\n]+
 
 {FLOAT}                 { return TOK_FLOAT_LITERAL; }
 {INT}                   { return TOK_INT_LITERAL; }
-\'([^\\\n]|\\.)\'      { return TOK_CHAR_LITERAL; }
-\"([^\\\n]|\\.)*\"     { return TOK_STRING_LITERAL; }
+\'([^\\\n]|\\.)\'    { return TOK_CHAR_LITERAL; }
+\"([^\\\n]|\\.)*\"  { return TOK_STRING_LITERAL; }
 "#"{ID}                 { return TOK_IDENTIFIER; }
 
 <<EOF>>                 { return TOK_EOF; }
